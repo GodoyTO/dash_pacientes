@@ -23,7 +23,7 @@ bar_simple <- function(
     
     porc <- round(100*(dt[[x]] / total), 1)
     
-    fig <- plot_ly() |> 
+    fig <- plot_ly() %>%  
         add_trace(
             y = dt[[y]], x = dt[[x]],
             marker = list(color = cor),
@@ -53,10 +53,9 @@ bar_simple <- function(
 ## Simple donut plot ####
 pizzaplot2 <- function(
         df, n, label, cor = pal[1:2],
-        text_n = ' subjects', title = 'Title') {
+        text_n = ' subjects', title = 'Title'){
     
     df$prop <- round(df[[n]]/sum(df[[n]])*100, 1)
-    
     
     plot_ly() %>% 
         add_pie(
