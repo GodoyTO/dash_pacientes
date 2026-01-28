@@ -1,3 +1,11 @@
+# Data files
+*.csv
+*.xlsx
+*.xls
+*.rds
+.DS_Store
+Thumbs.db
+
 # History files
 .Rhistory
 .Rapp.history
@@ -20,6 +28,7 @@
 
 # RStudio files
 .Rproj.user/
+*.Rproj
 
 # produced vignettes
 vignettes/*.html
@@ -47,15 +56,3 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
-
-.Rhistory
-*.Rproj
-.Rapp.history
-
-# Data files
-*.RData
-*.csv
-*.xlsx
-*.rds
-.DS_Store
-Thumbs.db
