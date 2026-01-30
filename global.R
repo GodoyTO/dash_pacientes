@@ -5,7 +5,7 @@ if(!require(shinydashboardPlus)) install.packages('shinydashboardPlus'); require
 if(!require(plotly)) install.packages('plotly'); require(plotly)
 if(!require(tidyverse)) install.packages('tidyverse'); require(tidyverse)
 
-# Color pallete ####
+# Color pallet ####
 pal <- c('#ffc9e5', '#ffabed', '#ff8abd', '#b8708a',
          '#e5ffc9', '#edffab', '#bdff8a', '#8ab870',
          '#cae5ff', '#acedff', '#89bbfe', '#6f8ab7',
@@ -15,7 +15,7 @@ pal <- c('#ffc9e5', '#ffabed', '#ff8abd', '#b8708a',
          "#FFBC4D", '#2c6bb4', '#f37120', '#00c1f3')
 
 # Global functions ####
-## Simple Barplot #####
+## Simple Bar plot #####
 bar_simple <- function(
         dt, x, y, cor, total, title = 'Title',
         label_x = 'Label x',
@@ -50,7 +50,7 @@ bar_simple <- function(
     return(fig)
 }
 
-## Simple donut plot ####
+## Simple Donut plot ####
 pizzaplot2 <- function(
         df, n, label, cor = pal[1:2],
         text_n = ' subjects', title = 'Title'){
