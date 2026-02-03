@@ -19,7 +19,7 @@ pal <- c('#ffc9e5', '#ffabed', '#ff8abd', '#b8708a',
 
 # Global functions ####
 ## Simple Bar plot #####
-bar_simple <- function(
+plot_bar <- function(
         dt, x, y, cor, total, title = 'Title',
         label_x = 'Label x',
         var_text = 'Variable text') {
@@ -54,7 +54,7 @@ bar_simple <- function(
 }
 
 ## Simple Donut plot ####
-pizzaplot2 <- function(
+plot_donut <- function(
         df, n, label, cor = pal[1:2],
         text_n = ' subjects', title = 'Title'){
 
@@ -90,5 +90,60 @@ pizzaplot2 <- function(
         )
 }
 
+plot_pyramid <- function(
+        df, X, Y, Z, pal, lab_y = ' ', lab_x, text = 'Cases', title) {
 
+    maxim <- max(abs(df[[X]]))
+    denom <- as.numeric(paste0(1, glue::glue_collapse(rep(0, nchar(maxim)-1))))
+    max_n <- round(maxim/denom)*denom
+
+    value_x  <- c(-max_n, -max_n/2, 0, max_n/2, max_n)
+    text_x   <- format(abs(value_x), big.mark = '.', decimal.mark = ',')
+    interval <- c(-(maxim + maxim*0.05), maxim + maxim*0.05)
+
+    plot_ly(df) %>%
+        add_trace(
+            x = df[[X]], y = df[[Y]],
+            color = df[[Z]],
+            type = 'bar',
+            colors = pal,
+            orientation = 'h',
+            hoverinfo = 'text',
+            textposition = 'none',
+            text = paste0('<b>',df[[Y]],'</b><br>',
+                          df[[Z]], '<br>',
+                          format(abs(df[[X]]), big.mark = '.',
+                                 decimal.mark = ','), ' ', text))  %>%
+        layout(
+            bargap = 0.1,
+            barmode = 'overlay',
+            title = list(text = title, y = 0.97, x = 0.5, font = list(size = 16)),
+            margin = list(pad = 1,
+                          t = 50),
+            legend = list(orientation = 'v',
+                          yanchor = "center",
+                          y = 0.5,
+                          font = list(size = 16)),
+
+            yaxis = list(title = list(text = lab_y,
+                                      font = list(size = 15)),
+                         zeroline = FALSE, mirror = TRUE,
+                         showline = TRUE, linewidth = 1,
+                         linecolor = 'black',
+                         showgrid = TRUE
+            ),
+
+            xaxis = list(title = list(text = lab_x,
+                                      font = list(size = 15)),
+                         tickvals = value_x,
+                         ticktext = text_x,
+                         range = interval,
+                         zeroline = TRUE, mirror = TRUE,
+                         showline = TRUE, linewidth = 1,
+                         linecolor = 'black',
+                         showgrid = TRUE
+            ),
+            hoverlabel = list(font = list(size = 16))
+        )
+}
 

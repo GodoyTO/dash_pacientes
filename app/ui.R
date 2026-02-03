@@ -22,7 +22,7 @@ siderbar <- dashboardSidebar(
     sidebarMenu(
         tags$br(),
         menuItem(
-            "First item",
+            "Demography",
             tabName = "placeholder1",
             icon = tags$i(class = "fas fa-1")
         # ),
