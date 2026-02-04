@@ -3,6 +3,7 @@ if(!require(shiny)) install.packages('shiny'); require(shiny)
 if(!require(shinydashboard)) install.packages('shinydashboard'); require(shinydashboard)
 if(!require(shinydashboardPlus)) install.packages('shinydashboardPlus'); require(shinydashboardPlus)
 if(!require(dashboardthemes)) install.packages('dashboardthemes'); require(dashboardthemes)
+if(!require(bslib)) install.packages('bslib'); require(bslib)
 if(!require(plotly)) install.packages('plotly'); require(plotly)
 if(!require(tidyverse)) install.packages('tidyverse'); require(tidyverse)
 
@@ -57,15 +58,17 @@ plot_bar <- function(
 plot_donut <- function(
         df, n, label, cor = pal,
         text_n = ' pacientes', title = 'Título') {
-    
+
     df$prop <- round(df[[n]]/sum(df[[n]])*100, 1)
-    
-    
-    plot_ly() %>% 
-        add_pie(data = df, labels = ~ df[[label]], 
-                values = ~ df[[n]],
+    df[[label]] <- str_wrap(df[[label]], width = 16)
+
+
+    plot_ly() %>%
+        add_pie(data = df, labels = ~df[[label]],
+                values = ~df[[n]],
                 sort = FALSE,
-                hole = 0.5,
+                direction = 'clockwise',
+                rotation = 0,
                 marker = list(colors = cor,
                               line = list(color = '#FFFFFF', width = 1)),
                 domain = list(row = 0, column = 0),
@@ -73,20 +76,18 @@ plot_donut <- function(
                 textposition = 'inside',
                 # customizar o texto
                 hoverinfo = 'text',
-                text = ~paste0(df[[label]], '\n',
+                text = ~paste0("<b>", df[[label]], "</b><br>",
                                format(df[[n]], big.mark = '.',
-                                      decimal.mark = ','), text_n,
-                               '\n', format(df$prop, big.mark = '.',
-                                            decimal.mark = ','), '%')) %>% 
-        
+                                      decimal.mark = ','), text_n, '<br>',
+                               format(df$prop, big.mark = '.',
+                                            decimal.mark = ','), '%')) %>%
+
         layout(
             title = list(text = title, y = 0.97, x = 0.5, font = list(size = 16)),
-            margin = list(pad = 1,
-                          t = 50),
+            margin = list(pad = 1, t = 50, b = 10, l = 10, r = 10),
             legend = list(orientation = 'v',
                           yanchor = "center",
-                          y = 0.5,
-                          font = list(size = 16)),
+                          y= 0.5),
             hoverlabel = list(font = list(size = 16))
         )
 }

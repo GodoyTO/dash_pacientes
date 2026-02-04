@@ -6,7 +6,7 @@ first_server <- function(id) {moduleServer(id,function(input, output, session) {
         valueBox(
             value = tags$p(
                 paste(length(unique(ds$cd_pac)), 'subjects'),
-                style = 'font-size: 80%; font-weigth: bold; color: #414141'),
+                style = 'font-size: 80%; font-weight: bold; color: #414141'),
             subtitle = tags$p(
                 'Whole subjects',
                 style = 'font-size: 120%; color: #414141'),
@@ -24,7 +24,7 @@ first_server <- function(id) {moduleServer(id,function(input, output, session) {
         valueBox(
             value = tags$p(
                 paste(length(unique(df$cd_pac)), 'subjects'),
-                style = 'font-size: 80%; font-weigth: bold; color: #414141'),
+                style = 'font-size: 80%; font-weight: bold; color: #414141'),
             subtitle = tags$p(
                 'Female subjects',
                 style = 'font-size: 120%; color: #414141'),
@@ -42,7 +42,7 @@ first_server <- function(id) {moduleServer(id,function(input, output, session) {
         valueBox(
             value = tags$p(
                 paste(length(unique(df$cd_pac)), 'subjects'),
-                style = 'font-size: 80%; font-weigth: bold; color: #414141'),
+                style = 'font-size: 80%; font-weight: bold; color: #414141'),
             subtitle = tags$p(
                 'Male subjects',
                 style = 'font-size: 120%; color: #414141'),
@@ -72,23 +72,21 @@ first_server <- function(id) {moduleServer(id,function(input, output, session) {
             title = paste0(
                 '<b>Subjects population pyramid'))
     })
-    
+
     output$race_donut <- renderPlotly({
-        
+
         df <- ds %>%
             select(cd_pac, nm_race) %>%
-            group_by(nm_race)  %>% 
-            summarize(num = n()) %>% 
-            mutate(nm_race = if_else(nm_race == 'Middle Eastern or North African',
-                                     'Middle Eastern\nor North African',
-                                     nm_race))
-        
-        
+            group_by(nm_race)  %>%
+            summarize(num = n()) %>%
+            arrange(desc(num))
+
+
         validate(
             need(!is.null(df), 'No data'),
             need(nrow(df) > 0, 'No data')
         )
-        
+
         df  %>%  plot_donut(
             n = 'num', label = 'nm_race',
             cor = pal[c(4,8,12,20,22)],

@@ -61,72 +61,94 @@ body <- dashboardBody(
     #                     login_title = "Access",
     #                     error_message = "Invalid user of password!"),
 
+    # roxo #9c6bf4
+    tags$style(
+        type = "text/css",
+        "
+    .bg-orange {background-color: #f37120!important;
+                 opacity: .9;}
+    .bg-blue {background-color: #2c6bb4!important;
+              opacity: .9;}
+    .bg-aqua {background-color: #00c1f3!important;
+              opacity: .9;}
+    .bg-green {background-color: #32A68C!important;
+              opacity: .9;}
+    .bg-yellow {background-color: #FFBC4D!important;
+              opacity: .9;}
+    .bg-purple {background-color: #605ca8!important;
+              opacity: .9;}
+    .bg-black {background-color: #757575!important;
+              opacity: .9;}
+    .bg-teal {background-color: #FFFF!important;
+              opacity: .9;}
 
+    "
+    ),
     ### Latest (as 2026-01-30) FAS repository
     tags$style(
         "@import url(https://use.fontawesome.com/releases/v7.1.0/css/all.css);"
     ),
 
     ### Customization
-    tags$head(
-        tags$style(
-            HTML("/* logo */
-                .skin-blue .main-header .logo {
-                background-color: #ffff;
-                }
-
-                /* Sidebar with long text */
-                .sidebar-menu > li {
-                white-space: normal;
-                }
-
-                /* logo when hovered */
-                .skin-blue .main-header .logo:hover {
-                background-color: #ffff;
-                colour: #ffff;
-                }
-
-                /* navbar (rest of the header) */
-                .skin-blue .main-header .navbar {
-                background-color: #2c6bb4;
-                }
-
-                /* main sidebar */
-                .skin-blue .main-sidebar {
-                background-color: #fafbfb;
-                }
-
-                /* sidebar toggle */
-                .skin-blue .main-header .navbar .sidebar-toggle {
-                background-color: #2c6bb4;
-                color: #ffff;
-                }
-
-                /* sidebar toggle */
-                .skin-blue .main-header .navbar .sidebar-toggle:hover {
-                background-color: #0c4bb4;
-                color: #ffff;
-                }
-
-                /* button default */
-                .btn-default {
-                background-color: #279aff;
-                border-color: #279aff;
-                color: white;
-                }
-
-                /* login pannel */
-                .well {
-                background-color: white;
-                border-color: #white;
-                }
-
-               /* tab pannels */
-                .nav-tabs>li>a {
-                border-color: #D2D1D1;
-                }")
-        )
-    ),
+    # tags$head(
+    #     tags$style(
+    #         HTML("/* logo */
+    #             .skin-blue .main-header .logo {
+    #             background-color: #ffff;
+    #             }
+    #
+    #             /* Sidebar with long text */
+    #             .sidebar-menu > li {
+    #             white-space: normal;
+    #             }
+    #
+    #             /* logo when hovered */
+    #             .skin-blue .main-header .logo:hover {
+    #             background-color: #ffff;
+    #             colour: #ffff;
+    #             }
+    #
+    #             /* navbar (rest of the header) */
+    #             .skin-blue .main-header .navbar {
+    #             background-color: #2c6bb4;
+    #             }
+    #
+    #             /* main sidebar */
+    #             .skin-blue .main-sidebar {
+    #             background-color: #fafbfb;
+    #             }
+    #
+    #             /* sidebar toggle */
+    #             .skin-blue .main-header .navbar .sidebar-toggle {
+    #             background-color: #2c6bb4;
+    #             color: #ffff;
+    #             }
+    #
+    #             /* sidebar toggle */
+    #             .skin-blue .main-header .navbar .sidebar-toggle:hover {
+    #             background-color: #0c4bb4;
+    #             color: #ffff;
+    #             }
+    #
+    #             /* button default */
+    #             .btn-default {
+    #             background-color: #279aff;
+    #             border-color: #279aff;
+    #             color: white;
+    #             }
+    #
+    #             /* login pannel */
+    #             .well {
+    #             background-color: white;
+    #             border-color: #white;
+    #             }
+    #
+    #            /* tab pannels */
+    #             .nav-tabs>li>a {
+    #             border-color: #D2D1D1;
+    #             }")
+    #     )
+    # ),
 
     ### Body elements ####
     tags$br(),
