@@ -27,8 +27,14 @@ first_ui <- function(id) { tabItem(
         fluidRow(
             # Population pyramid
             box(
-                width = 12, height = '600px', title = NULL,
+                width = 6, height = '600px', title = NULL,
                 plotlyOutput(NS(id,'pyramid'), height = '500px')
+            ),
+            
+            # Race distribution
+            box(
+                width = 6, height = '600px', title = NULL,
+                plotlyOutput(NS(id,'race_donut'), height = '500px')
             )
         )
     ))

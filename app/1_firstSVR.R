@@ -72,4 +72,28 @@ first_server <- function(id) {moduleServer(id,function(input, output, session) {
             title = paste0(
                 '<b>Subjects population pyramid'))
     })
+    
+    output$race_donut <- renderPlotly({
+        
+        df <- ds %>%
+            select(cd_pac, nm_race) %>%
+            group_by(nm_race)  %>% 
+            summarize(num = n()) %>% 
+            mutate(nm_race = if_else(nm_race == 'Middle Eastern or North African',
+                                     'Middle Eastern\nor North African',
+                                     nm_race))
+        
+        
+        validate(
+            need(!is.null(df), 'No data'),
+            need(nrow(df) > 0, 'No data')
+        )
+        
+        df  %>%  plot_donut(
+            n = 'num', label = 'nm_race',
+            cor = pal[c(4,8,12,20,22)],
+            text_n = ' subjects',
+            title = paste0(
+                '<b>Race distribution'))
+    })
 })}

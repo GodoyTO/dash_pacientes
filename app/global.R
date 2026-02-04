@@ -55,37 +55,38 @@ plot_bar <- function(
 
 ## Simple Donut plot ####
 plot_donut <- function(
-        df, n, label, cor = pal[1:2],
-        text_n = ' subjects', title = 'Title'){
-
+        df, n, label, cor = pal,
+        text_n = ' pacientes', title = 'Título') {
+    
     df$prop <- round(df[[n]]/sum(df[[n]])*100, 1)
-
-    plot_ly() %>%
-        add_pie(
-            data = df, labels = ~ df[[label]],
-            values = ~ df[[n]],
-            sort = FALSE,
-            hole = 0.5,
-            marker = list(
-                colors = cor, line = list(color = '#FFFFFF', width = 1)),
-            domain = list(row = 0, column = 0),
-            textinfo = 'label',
-            textposition = 'inside',
-            # customize the text
-            hoverinfo = 'text',
-            text = ~paste0(
-                df[[label]], '\n',
-                format(df[[n]], big.mark = '.',
-                       decimal.mark = ','), texto_n,
-                '\n', format(df$prop, big.mark = '.',
-                             decimal.mark = ','), '%')) %>%
+    
+    
+    plot_ly() %>% 
+        add_pie(data = df, labels = ~ df[[label]], 
+                values = ~ df[[n]],
+                sort = FALSE,
+                hole = 0.5,
+                marker = list(colors = cor,
+                              line = list(color = '#FFFFFF', width = 1)),
+                domain = list(row = 0, column = 0),
+                textinfo = 'label',
+                textposition = 'inside',
+                # customizar o texto
+                hoverinfo = 'text',
+                text = ~paste0(df[[label]], '\n',
+                               format(df[[n]], big.mark = '.',
+                                      decimal.mark = ','), text_n,
+                               '\n', format(df$prop, big.mark = '.',
+                                            decimal.mark = ','), '%')) %>% 
+        
         layout(
-            title = list(
-                text = title, y = 0.97, x = 0.5, font = list(size = 16)),
-            margin = list(pad = 1, t = 50),
-            legend = list(
-                orientation = 'v', yanchor = "center",
-                y = 0.5, font = list(size = 16)),
+            title = list(text = title, y = 0.97, x = 0.5, font = list(size = 16)),
+            margin = list(pad = 1,
+                          t = 50),
+            legend = list(orientation = 'v',
+                          yanchor = "center",
+                          y = 0.5,
+                          font = list(size = 16)),
             hoverlabel = list(font = list(size = 16))
         )
 }
